@@ -1,0 +1,22 @@
+export declare const uploadsDir: string;
+export declare const iso: (value: any) => string | null;
+export declare function memberJson(row: any): Promise<{
+    id: number;
+    name: any;
+    email: any;
+    phone: any;
+    gender: any;
+    age: any;
+    plan: any;
+    duration_value: any;
+    duration_unit: any;
+    fee: number;
+    joining_date: string | null;
+    expiry_date: string | null;
+    status: any;
+    notes: any;
+    keycard: any;
+    pr_kg: number;
+    photo: string | null;
+    created_at: string | null;
+}>;
