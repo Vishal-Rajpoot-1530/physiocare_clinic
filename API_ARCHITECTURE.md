@@ -1,4 +1,4 @@
-# Power Cave API Architecture
+# Physio API Architecture
 
 ## Flutter
 - `lib/api/api_config.dart` - base URL and timeout
@@ -22,11 +22,11 @@ Run Flutter with `flutter run`. Every request prints:
 
 ## NestJS
 - Feature modules: `auth`, `members`, `finance`, `settings`, `checkins`
-- `prisma` - MySQL access
+- `prisma` - MySQL access to the `rts_physioclinic` database
 - `common/request-logger.middleware.ts` - incoming API logs
 - Membership plans use `duration_value` and `duration_unit` (`DAY`, `WEEK`, or `MONTH`). Before deploying the updated API, run `npx prisma migrate deploy` from `backend`; the migration preserves existing plans and memberships as month-based durations.
 
-Run `npm run start:dev`; each hit prints method, URL, HTTP status and duration.
+From `physio_backend`, run `npm run start:dev`; each hit prints method, URL, HTTP status and duration.
 
 ## Empty member behavior
 Either store returning an empty member list renders the Members empty state: `No members yet...`. It never injects demo members.

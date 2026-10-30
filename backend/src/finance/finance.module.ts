@@ -1,1 +1,0 @@
-import {Module} from '@nestjs/common';import{AuthModule}from'../auth/auth.module';import{FinanceController}from'./finance.controller';@Module({imports:[AuthModule],controllers:[FinanceController]})export class FinanceModule{}

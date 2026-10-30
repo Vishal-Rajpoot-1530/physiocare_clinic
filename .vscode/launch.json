@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Physio Web (5502)",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "web-server",
+      "program": "lib/main.dart",
+      "toolArgs": ["--web-port", "5502"]
+    }
+  ]
+}

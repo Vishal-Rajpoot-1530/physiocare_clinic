@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
+import '../api/api_exception.dart';
 import '../db/app_db.dart';
 import '../widgets/common.dart';
+import 'inactive_account.dart';
 import 'shell.dart';
+import 'subscription_expired.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -85,8 +88,7 @@ class _AuthScreenState extends State<AuthScreen> {
           selectedMode,
           remember: remember,
         );
-        if (account == null &&
-            demoLogin) {
+        if (account == null && demoLogin) {
           account = await AppDb.i.register(
             'Demo User',
             _demoEmail,
@@ -104,13 +106,29 @@ class _AuthScreenState extends State<AuthScreen> {
           errIsOk = false;
         });
       } else {
+        final subscriptionActive =
+            selectedMode == AccountMode.offline ||
+            account['subscription_active'] == true;
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => const Shell()),
+          MaterialPageRoute(
+            builder: (_) => subscriptionActive
+                ? const Shell()
+                : const SubscriptionExpiredScreen(),
+          ),
         );
       }
     } catch (e) {
       if (mounted) {
+        if (e is ApiException &&
+            e.statusCode == 401 &&
+            e.message.toLowerCase().contains('account is inactive')) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const InactiveAccountScreen()),
+          );
+          return;
+        }
         setState(() {
           err = e.toString().replaceFirst('Exception: ', '');
           errIsOk = false;
