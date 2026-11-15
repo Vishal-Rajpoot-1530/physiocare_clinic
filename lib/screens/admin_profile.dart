@@ -192,7 +192,8 @@ class AdminProfileScreen extends StatelessWidget {
     final planName = switch (planType?.toLowerCase()) {
       'monthly' => 'Monthly',
       'quarterly' => 'Quarterly',
-      'yearly' => 'Yearly',
+      'half_yearly' => 'Half Yearly',
+      'yearly' => 'Annual',
       null || '' => 'No plan assigned',
       _ => planType!,
     };

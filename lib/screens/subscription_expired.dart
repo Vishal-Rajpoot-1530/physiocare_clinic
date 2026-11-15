@@ -25,9 +25,9 @@ class _SubscriptionExpiredScreenState extends State<SubscriptionExpiredScreen> {
     '+91 8545098444',
   ];
   static const _plans = [
-    (title: 'Monthly', duration: '1 month', price: 150),
-    (title: 'Quarterly', duration: '3 months', price: 300),
-    (title: 'Yearly', duration: '12 months', price: 1000),
+    (title: 'Quarterly', duration: '3 months', price: 500),
+    (title: 'Half Yearly', duration: '6 months', price: 900),
+    (title: 'Annual', duration: '12 months', price: 1600),
   ];
 
   bool checking = false;
@@ -105,7 +105,7 @@ class _SubscriptionExpiredScreenState extends State<SubscriptionExpiredScreen> {
     Map<String, Object?> admin,
     ({String title, String duration, int price}) plan,
   ) {
-    final featured = plan.title == 'Yearly';
+    final featured = plan.title == 'Annual';
 
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
@@ -243,7 +243,8 @@ class _SubscriptionExpiredScreenState extends State<SubscriptionExpiredScreen> {
     final planTitle = switch (plan) {
       'monthly' => 'Monthly',
       'quarterly' => 'Quarterly',
-      'yearly' => 'Yearly',
+      'half_yearly' => 'Half Yearly',
+      'yearly' => 'Annual',
       'unknown' => 'No active plan',
       _ => plan,
     };
